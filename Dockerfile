@@ -22,7 +22,7 @@ RUN set -ex \
     libyaml-dev zlib1g-dev libssl-dev libbz2-dev libreadline-dev \
     libfontconfig1-dev libx11-dev libxcomposite-dev \
     libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev \
-    curl ca-certificates \
+    curl ca-certificates ssh-client \
   \
   && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
   && apt-get -qq install git-lfs \
