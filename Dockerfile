@@ -1,8 +1,8 @@
 FROM node:8.11.1-stretch AS node
+FROM python:2.7.15-stretch AS python
 FROM debian:stretch-slim AS combined
 
 ENV YARN_VERSION 1.5.1
-ENV PYTHON_27_VERSION 2.7.14
 
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY --from=node /usr/local/bin/npm /usr/local/bin/npm
