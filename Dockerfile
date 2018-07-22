@@ -22,6 +22,7 @@ RUN ["/bin/bash", "-c", "\
   set -eux -o pipefail \
     && apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends \
+      git curl ca-certificates ssh-client \
       libyaml-dev zlib1g-dev libssl-dev libbz2-dev libreadline-dev \
     \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
