@@ -14,7 +14,7 @@ $ docker build -t emojigen/node-py2 .
 
 ## See also
 
-- [Docker Hub](https://hub.docker.com/r/emojigen/docker-node-py2/)
+- [Docker Hub](https://hub.docker.com/r/emojigen/node-py2/)
 
 ## License
 MIT &copy; [Emoji Generator](https://emoji-gen.ninja/)
