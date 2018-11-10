@@ -39,7 +39,7 @@ RUN ["/bin/bash", "-c", "\
     && ldconfig \
     \
     && pip install pip --upgrade \
-    && pip install wheel --upgrade \
+    && pip install wheel==0.31.1 --upgrade \
     \
     && apt-get -qq autoremove -y \
     && apt-get -qq clean \
