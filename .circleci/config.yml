@@ -17,7 +17,10 @@ jobs:
           command: docker build -t $OWNER/$IMAGE_NAME:latest .
       - run:
           name: Docker Login
-          command: echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USER --password-stdin
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USER --password-stdin
+            fi
       - run:
           name: Push image to registory
           command: |
