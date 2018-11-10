@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Push image to registory
           command: |
+            NODE_VERSION=fgrep 'node:' Dockerfile | sed -E 's/^.*node\:([0-9\.]+).*$/\1/'
+            echo $NODE_VERSION
+
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker push $OWNER/$IMAGE_NAME
             fi
