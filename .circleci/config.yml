@@ -22,7 +22,7 @@ jobs:
           name: Push image to registory
           shell: /bin/bash -eu -o pipefail
           command: |
-            NODE_VERSION=fgrep 'node:' Dockerfile | sed -E 's/^.*node\:([0-9\.]+).*$/\1/'
+            NODE_VERSION=$(fgrep 'node:' Dockerfile | sed -E 's/^.*node\:([0-9\.]+).*$/\1/')
             echo $NODE_VERSION
 
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
