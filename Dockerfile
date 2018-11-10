@@ -16,7 +16,7 @@ COPY --from=python /usr/local/bin/python2.7 /usr/local/bin/python2.7
 COPY --from=python /usr/local/bin/python2.7-config /usr/local/bin/python2.7-config
 COPY --from=python /usr/local/lib/libpython2.7.so.1.0 /usr/local/lib/libpython2.7.so.1.0
 COPY --from=python /usr/local/lib/python2.7 /usr/local/lib/python2.7
-COPY --from=python /usr/local/include /usr/local/include
+COPY --from=python /usr/local/include/python2.7 /usr/local/include/python2.7
 
 RUN ["/bin/bash", "-c", "\
   set -eux -o pipefail \
