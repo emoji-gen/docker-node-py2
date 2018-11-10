@@ -9,7 +9,7 @@
 ## Build
 
 ```
-$ docker build -t emojigen/docker-node-py2 .
+$ docker build -t emojigen/node-py2 .
 ```
 
 ## See also
