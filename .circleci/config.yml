@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Push image to registory
           command: |
+            ls ./.circleci/
             if [ "$CIRCLE_BRANCH" == 'master' ]; then
               ./.circleci/push-docker-image.sh
             fi
