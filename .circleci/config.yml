@@ -19,7 +19,8 @@ jobs:
             apk add -U -q --no-progress bash
       - run:
           name: Build
-          command: docker build -t $DOCKER_OWNER/$DOCKER_IMAGE:latest .
+          command: |
+            docker build -t $DOCKER_OWNER/$DOCKER_IMAGE:latest .
       - run:
           name: Docker Login
           command: |
