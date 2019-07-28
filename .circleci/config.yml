@@ -34,3 +34,57 @@ jobs:
             if [ "$CIRCLE_BRANCH" == 'master' ]; then
               ./.circleci/push-docker-image.sh
             fi
+  sync:
+    docker:
+      - image: docker:17.11.0-ce
+    working_directory: ~/workspace
+    environment:
+      GIT_TERMINAL_PROMPT: 0
+      DOCKER_OWNER: emojigen
+      DOCKER_IMAGE: node-py2
+    steps:
+      - setup_remote_docker:
+          version: 17.11.0-ce
+          docker_layer_caching: true
+      - checkout
+      - run:
+          name: Update dockerfile
+          command: |
+            apk add -U -q --no-progress ca-certificates git jq sed wget
+            ./.circleci/update-dockerfile.sh
+      - run:
+          name: Build
+          command: |
+            docker build -t $DOCKER_OWNER/$DOCKER_IMAGE:latest .
+      - add_ssh_keys:
+          fingerprints:
+            - 'a0:2d:46:4c:76:a1:b0:97:5f:1f:d4:9b:97:f6:21:89'
+      - run:
+          name: Push to GitHub
+          command: |
+            apk add -U -q --no-progress openssh
+            ./.circleci/update-remote.sh
+      - run:
+          name: Docker Login
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USER --password-stdin
+      - run:
+          name: Push image to registory
+          command: |
+            ./.circleci/push-docker-image.sh
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - sync
+  sync:
+    triggers:
+      - schedule:
+          cron: '30 0 * * *' # UTC
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - sync
