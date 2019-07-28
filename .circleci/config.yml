@@ -48,6 +48,10 @@ jobs:
           docker_layer_caching: true
       - checkout
       - run:
+          name: Install Bash
+          command: |
+            apk add -U -q --no-progress bash
+      - run:
           name: Update dockerfile
           command: |
             apk add -U -q --no-progress ca-certificates git jq sed wget
